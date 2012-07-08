@@ -75,7 +75,7 @@ module AjaxfulRating # :nodoc:
     def ratings_for(*args)
       @axr_css ||= CSSBuilder.new
       options = args.extract_options!.to_hash.symbolize_keys.slice(:small, :remote_options,
-        :wrap, :show_user_rating, :dimension, :force_static, :current_user)
+        :wrap, :show_user_rating, :dimension, :force_static, :current_user, :star_width, :small_star_width)
 
       remote_options = options.delete(:remote_options) || {}
       rateable = args.shift

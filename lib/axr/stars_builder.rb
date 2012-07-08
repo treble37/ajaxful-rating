@@ -31,6 +31,8 @@ module AjaxfulRating # :nodoc:
         :small => false,
         :show_user_rating => false,
         :force_static => false,
+        :star_width => 25,
+        :small_star_width => 10,
         :current_user => (@template.current_user if @template.respond_to?(:current_user))
       }.merge(options)
       
@@ -58,9 +60,9 @@ module AjaxfulRating # :nodoc:
       stars = []
       width = (show_value / rateable.class.max_stars.to_f) * 100
       li_class = "axr-#{show_value}-#{rateable.class.max_stars}".gsub('.', '_')
-      @css_builder.rule('.ajaxful-rating', :width => (rateable.class.max_stars * 25))
+      @css_builder.rule('.ajaxful-rating', :width => (rateable.class.max_stars * options[:star_width]))
       @css_builder.rule('.ajaxful-rating.small',
-        :width => (rateable.class.max_stars * 10)) if options[:small]
+        :width => (rateable.class.max_stars * options[:small_star_width])) if options[:small]
       
       stars << @template.content_tag(:li, i18n(:current), :class => "show-value",
         :style => "width: #{width}%")
